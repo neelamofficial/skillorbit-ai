@@ -262,11 +262,14 @@ def extract_cv_text(uploaded_file):
 
 
 def get_openai_client():
-    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
     if not api_key or OpenAI is None:
         return None
     try:
-        return OpenAI(api_key=api_key)
+        return OpenAI(
+            api_key=api_key,
+            base_url="https://api.groq.com/openai/v1"
+        )
     except Exception:
         return None
 
@@ -277,7 +280,7 @@ def ai_generate(prompt, system_message="You are a helpful student career advisor
     if client is None:
         return None
 
-    model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+    model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
 
     try:
         response = client.chat.completions.create(
