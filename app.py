@@ -268,7 +268,7 @@ def get_openai_client():
     try:
         return OpenAI(
             api_key=api_key,
-            base_url="https://api.groq.com/openai/v1"
+            base_url="https://platform.openai.com/api-keys"
         )
     except Exception:
         return None
