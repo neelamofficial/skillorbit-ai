@@ -280,7 +280,7 @@ def ai_generate(prompt, system_message="You are a helpful student career advisor
     if client is None:
         return None
 
-    model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+    model = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
 
     try:
         response = client.chat.completions.create(
